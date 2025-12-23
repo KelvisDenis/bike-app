@@ -8,63 +8,67 @@ import HomeADM from "../dashboard/pages/Home";
 import PartsEdit from "../dashboard/pages/PartsEdit";
 import { ProtectedRoute } from "../auth/protected/ProtectedRoute";
 import LoginPage from "../auth/pages/Login";
+import { AuthProvider } from "../auth/provider/AuthContext";
 
 
 
 function MyRoutes() {
     return (
-        <BrowserRouter>
-            <Navbar
-                items={[
-                    { name: "Home", uri: "/" },
-                    { name: "Peças", uri: "/pecas" },
-                    { name: "Serviços", uri: "/servicos" },
-                    { name: "Unidades", uri: "/unidades" },
-                    { name: "Fale Conosco", uri: "/reclamaqui" },
-                ]}
-            />
+        <AuthProvider>
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/pecas" element={<Parts />} />
-                <Route path="/servicos" element={<Services />} />
-                <Route path="/login" element={<LoginPage />} />
-
-
-                {/* admin */}
-                <Route path="/admin" element={
-                    <ProtectedRoute>
-                        <HomeADM />
-                    </ProtectedRoute>
-                }
+            <BrowserRouter>
+                <Navbar
+                    items={[
+                        { name: "Home", uri: "/" },
+                        { name: "Peças", uri: "/pecas" },
+                        { name: "Serviços", uri: "/servicos" },
+                        { name: "Unidades", uri: "/unidades" },
+                        { name: "Fale Conosco", uri: "/reclamaqui" },
+                    ]}
                 />
 
-                <Route path="/admin/pecas" element={
-                    <ProtectedRoute>
-                        <PartsEdit />
-                    </ProtectedRoute>
-                }
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/pecas" element={<Parts />} />
+                    <Route path="/servicos" element={<Services />} />
+                    <Route path="/login" element={<LoginPage />} />
+
+
+                    {/* admin */}
+                    <Route path="/admin" element={
+                        <ProtectedRoute>
+                            <HomeADM />
+                        </ProtectedRoute>
+                    }
+                    />
+
+                    <Route path="/admin/pecas" element={
+                        <ProtectedRoute>
+                            <PartsEdit />
+                        </ProtectedRoute>
+                    }
+                    />
+                </Routes>
+
+
+
+                <Footer
+                    operatingHours={[
+                        { label: "Segunda a Sexta", time: "08:00 – 18:00" },
+                        { label: "Sábado", time: "08:00 – 12:00" },
+                        { label: "Domingo", time: "Fechado" },
+                    ]}
+                    contacts={[
+                        { label: "Email", value: "contato@minhaapp.com" },
+                        { label: "Telefone", value: "(99) 99999-9999" },
+                        { label: "WhatsApp", value: "(99) 99999-9999" },
+                    ]}
+                    about="Plataforma para gerenciamento e upload de músicas com foco em simplicidade e segurança."
                 />
-            </Routes>
 
 
-
-            <Footer
-                operatingHours={[
-                    { label: "Segunda a Sexta", time: "08:00 – 18:00" },
-                    { label: "Sábado", time: "08:00 – 12:00" },
-                    { label: "Domingo", time: "Fechado" },
-                ]}
-                contacts={[
-                    { label: "Email", value: "contato@minhaapp.com" },
-                    { label: "Telefone", value: "(99) 99999-9999" },
-                    { label: "WhatsApp", value: "(99) 99999-9999" },
-                ]}
-                about="Plataforma para gerenciamento e upload de músicas com foco em simplicidade e segurança."
-            />
-
-
-        </BrowserRouter>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 
