@@ -10,12 +10,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     !!localStorage.getItem("auth")
   );
 
-  function login() {
+  const login = () => {
     localStorage.setItem("auth", "true");
     setIsAuthenticated(true);
   }
 
-  function logout() {
+  const logout = () => {
     localStorage.removeItem("auth");
     setIsAuthenticated(false);
   }

@@ -6,6 +6,8 @@ import Parts from "../parts/pages/Parts";
 import Services from "../servicesBike/pages/Services";
 import HomeADM from "../dashboard/pages/Home";
 import PartsEdit from "../dashboard/pages/PartsEdit";
+import { ProtectedRoute } from "../auth/protected/ProtectedRoute";
+import LoginPage from "../auth/pages/Login";
 
 
 
@@ -26,10 +28,23 @@ function MyRoutes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/pecas" element={<Parts />} />
                 <Route path="/servicos" element={<Services />} />
+                <Route path="/login" element={<LoginPage />} />
+
 
                 {/* admin */}
-                <Route path="/admin" element={<HomeADM />} />
-                <Route path="/admin/pecas" element={<PartsEdit />} />
+                <Route path="/admin" element={
+                    <ProtectedRoute>
+                        <HomeADM />
+                    </ProtectedRoute>
+                }
+                />
+
+                <Route path="/admin/pecas" element={
+                    <ProtectedRoute>
+                        <PartsEdit />
+                    </ProtectedRoute>
+                }
+                />
             </Routes>
 
 
