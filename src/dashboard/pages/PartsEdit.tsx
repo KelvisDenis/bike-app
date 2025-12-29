@@ -5,6 +5,7 @@ import type { Part } from "../interfaces/IPart";
 import Input from "../components/Input";
 import Form from "../components/Form";
 import Table from "../components/Table";
+import Navbar from "../../shared/navbar/NavbarComponent";
 
 
 
@@ -86,7 +87,7 @@ function PartsEdit() {
 
     return (
         <div className="admin-layout">
-            <SidBar />
+     
 
             <main className="admin-content">
                 <h1>Gerenciar Peças</h1>

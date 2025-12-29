@@ -4,12 +4,8 @@ import Home from "../home/pages/Home";
 import Footer from "../shared/footer/Footer";
 import Parts from "../parts/pages/Parts";
 import Services from "../servicesBike/pages/Services";
-import HomeADM from "../dashboard/pages/Home";
-import PartsEdit from "../dashboard/pages/PartsEdit";
-import { ProtectedRoute } from "../auth/protected/ProtectedRoute";
 import LoginPage from "../auth/pages/Login";
 import { AuthProvider, useAuth } from "../auth/provider/AuthContext";
-import ServicesADM from "../dashboard/pages/ServicesEdit";
 
 function AppRoutes() {
     const { isAuthenticated } = useAuth();
@@ -28,39 +24,12 @@ function AppRoutes() {
                 />
             )}
 
+
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/pecas" element={<Parts />} />
                 <Route path="/servicos" element={<Services />} />
                 <Route path="/login" element={<LoginPage />} />
-
-                {/* ADMIN */}
-                <Route
-                    path="/admin"
-                    element={
-                        <ProtectedRoute>
-                            <HomeADM />
-                        </ProtectedRoute>
-                    }
-                />
-
-                <Route
-                    path="/admin/pecas"
-                    element={
-                        <ProtectedRoute>
-                            <PartsEdit />
-                        </ProtectedRoute>
-                    }
-                />
-
-                <Route
-                    path="/admin/servicos"
-                    element={
-                        <ProtectedRoute>
-                            <ServicesADM />
-                        </ProtectedRoute>
-                    }
-                />
             </Routes>
 
             {!isAuthenticated && (

@@ -2,10 +2,22 @@
     display: flex;
     min-height: 100vh;
     background-color: #020617;
+    flex-direction: row; /* desktop */
 }
 
-.home-adm-content{
-      flex: 1;
-  padding: 2rem;
-  color: #e5e7eb;
+.home-adm-content {
+    flex: 1;
+    padding: 2rem;
+    color: #e5e7eb;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .home-adm-layout {
+        flex-direction: column;
+    }
+
+    .home-adm-content {
+        padding: 1rem;
+    }
 }

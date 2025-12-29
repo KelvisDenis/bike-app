@@ -66,3 +66,15 @@ td {
   background: #ef4444;
   color: #fff;
 }
+
+
+@media (max-width: 1024px) {
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 700px;
+  }
+}
+

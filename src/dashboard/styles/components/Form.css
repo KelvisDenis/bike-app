@@ -1,3 +1,4 @@
+/* FORM */
 .app-form {
   background: #020617;
   border: 1px solid #1e293b;
@@ -6,10 +7,14 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+
+  width: 100%;
+  max-width: 520px;
 }
 
 .app-form h2 {
   text-align: center;
+  font-size: 1.3rem;
 }
 
 .form-content {
@@ -18,6 +23,7 @@
   gap: 1rem;
 }
 
+/* BOTÕES */
 .app-form button {
   padding: 0.75rem;
   border-radius: 8px;
@@ -26,17 +32,14 @@
   color: #020617;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .app-form button:hover {
   background: #0ea5e9;
 }
 
-
-
-
-
-
+/* MODAL */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -45,13 +48,21 @@
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  padding: 1rem;
 }
 
+.modal {
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
+/* AÇÕES */
 .modal-actions {
   display: flex;
   gap: 1rem;
-
+  justify-content: flex-end;
 }
 
 .modal-actions .cancel {
@@ -60,7 +71,30 @@
   color: #64748b;
 }
 
-.modal-actions button{
+.modal-actions button {
   cursor: pointer;
 }
 
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+  .app-form {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .app-form h2 {
+    font-size: 1.1rem;
+  }
+
+  .modal {
+    max-width: 100%;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}

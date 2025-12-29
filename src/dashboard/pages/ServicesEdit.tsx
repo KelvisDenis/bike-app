@@ -4,13 +4,14 @@ import SidBar from "../components/Sidbar";
 import Input from "../components/Input";
 import Form from "../components/Form";
 import Table from "../components/Table";
+import Navbar from "../../shared/navbar/NavbarComponent";
 
 
 
 function ServicesADM() {
     // stats 
     const [parts, setParts] = useState<Part[]>([
-        { id: 0, name: "Revisão de Moto", category: "Moto", price: "259,00" }
+        { id: 1, name: "Revisão de Moto", category: "Moto", price: "259,00" }
     ]);
 
     const [form, setForm] = useState<Omit<Part, "id">>({
@@ -63,8 +64,9 @@ function ServicesADM() {
 
         setParts((prev) =>
             prev.map((p) =>
-                p.id === editingId ? { id: editingId, ...form } : p
+                p.id === editingId ? { id: editingId, ...form } : p,
             )
+
         );
 
         setIsModalOpen(false);
@@ -83,7 +85,7 @@ function ServicesADM() {
 
     return (
         <div className="admin-layout">
-            <SidBar />
+          
 
             <main className="admin-content">
                 <h1>Gerenciar Serviços</h1>
