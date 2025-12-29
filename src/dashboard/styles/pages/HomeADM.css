@@ -1,0 +1,11 @@
+.home-adm-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #020617;
+}
+
+.home-adm-content{
+      flex: 1;
+  padding: 2rem;
+  color: #e5e7eb;
+}

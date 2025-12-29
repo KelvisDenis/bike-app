@@ -8,15 +8,14 @@ import HomeADM from "../dashboard/pages/Home";
 import PartsEdit from "../dashboard/pages/PartsEdit";
 import { ProtectedRoute } from "../auth/protected/ProtectedRoute";
 import LoginPage from "../auth/pages/Login";
-import { AuthProvider } from "../auth/provider/AuthContext";
+import { AuthProvider, useAuth } from "../auth/provider/AuthContext";
 
+function AppRoutes() {
+    const { isAuthenticated } = useAuth();
 
-
-function MyRoutes() {
     return (
-        <AuthProvider>
-
-            <BrowserRouter>
+        <>
+            {!isAuthenticated && (
                 <Navbar
                     items={[
                         { name: "Home", uri: "/" },
@@ -26,32 +25,35 @@ function MyRoutes() {
                         { name: "Fale Conosco", uri: "/reclamaqui" },
                     ]}
                 />
+            )}
 
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/pecas" element={<Parts />} />
-                    <Route path="/servicos" element={<Services />} />
-                    <Route path="/login" element={<LoginPage />} />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/pecas" element={<Parts />} />
+                <Route path="/servicos" element={<Services />} />
+                <Route path="/login" element={<LoginPage />} />
 
-
-                    {/* admin */}
-                    <Route path="/admin" element={
+                {/* ADMIN */}
+                <Route
+                    path="/admin"
+                    element={
                         <ProtectedRoute>
                             <HomeADM />
                         </ProtectedRoute>
                     }
-                    />
+                />
 
-                    <Route path="/admin/pecas" element={
+                <Route
+                    path="/admin/pecas"
+                    element={
                         <ProtectedRoute>
                             <PartsEdit />
                         </ProtectedRoute>
                     }
-                    />
-                </Routes>
+                />
+            </Routes>
 
-
-
+            {!isAuthenticated && (
                 <Footer
                     operatingHours={[
                         { label: "Segunda a Sexta", time: "08:00 – 18:00" },
@@ -63,13 +65,19 @@ function MyRoutes() {
                         { label: "Telefone", value: "(99) 99999-9999" },
                         { label: "WhatsApp", value: "(99) 99999-9999" },
                     ]}
-                    about="Plataforma para gerenciamento e upload de músicas com foco em simplicidade e segurança."
+                    about="Plataforma para gerenciamento de oficina de moto e bike."
                 />
+            )}
+        </>
+    );
+}
 
-
+export default function MyRoutes() {
+    return (
+        <AuthProvider>
+            <BrowserRouter>
+                <AppRoutes />
             </BrowserRouter>
         </AuthProvider>
     );
 }
-
-export default MyRoutes;
