@@ -35,18 +35,12 @@ function SidBar() {
           </li>
 
           <li>
-            <a href="/admin/services">
+            <a href="/admin/servicos">
               <span className="icon"></span>
               {!collapsed && <span>Serviços</span>}
             </a>
           </li>
 
-          <li>
-            <a href="/admin/settings">
-              <span className="icon"></span>
-              {!collapsed && <span>Configurações</span>}
-            </a>
-          </li>
         </ul>
       </nav>
 

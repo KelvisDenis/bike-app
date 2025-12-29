@@ -2,6 +2,9 @@ import { useState } from "react";
 import "../styles/pages/PartsEdit.css";
 import SidBar from "../components/Sidbar";
 import type { Part } from "../interfaces/IPart";
+import Input from "../components/Input";
+import Form from "../components/Form";
+import Table from "../components/Table";
 
 
 
@@ -93,17 +96,15 @@ function PartsEdit() {
                 {isModalCreate && (
                     <div className="modal-overlay">
                         <div className="modal">
-                            <h2>Nova Peça</h2>
 
-                            <form className="parts-form" onSubmit={handleCreate}>
-                                <input
+                            <Form title="Nova Peça" onSubmit={handleCreate} submitText="Criar" handleCancel={handleClickNew}>
+                                <Input
                                     name="name"
                                     placeholder="Nome da peça"
                                     value={form.name}
                                     onChange={handleChange}
                                     required
                                 />
-
                                 <select
                                     name="category"
                                     value={form.category}
@@ -113,7 +114,7 @@ function PartsEdit() {
                                     <option value="Bike">Bike</option>
                                 </select>
 
-                                <input
+                                <Input
                                     name="price"
                                     placeholder="Preço"
                                     value={form.price}
@@ -121,81 +122,49 @@ function PartsEdit() {
                                     required
                                 />
 
-                                <input
+                                <Input
                                     name="stock"
-                                    type="number"
                                     placeholder="Estoque"
                                     value={form.stock}
                                     onChange={handleChange}
+                                    required
                                 />
+                            </Form>
 
-                                <div className="modal-actions">
-                                    <button type="submit">Criar</button>
-                                    <button
-                                        type="button"
-                                        className="cancel"
-                                        onClick={handleClickNew}
-                                    >
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 )}
 
 
-                {/* LISTAGEM */}
-                <section className="parts-list">
-                    <div className="parts-list-header">
-                        <h2>Lista de Peças</h2>
-                        <h3 onClick={handleClickNew}>+ Adicionar</h3>
-                    </div>
+                <Table
+                    title="Lista de Peças"
+                    actionLabel="+ Adicionar"
+                    onActionClick={handleClickNew}
+                    data={parts}
+                    columns={[
+                        { key: "name", label: "Nome" },
+                        { key: "category", label: "Categoria" },
+                        {
+                            key: "price",
+                            label: "Preço",
+                            render: (row) => `R$ ${row.price}`,
+                        },
+                        { key: "stock", label: "Estoque" },
+                    ]}
+                    onEdit={handleEdit}
+                    onDelete={(row) => handleDelete(row.id)}
+                />
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Estoque</th>
-                                <th>Ações</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-                            {parts.map((part) => (
-                                <tr key={part.id}>
-                                    <td>{part.name}</td>
-                                    <td>{part.category}</td>
-                                    <td>R$ {part.price}</td>
-                                    <td>{part.stock}</td>
-                                    <td className="actions">
-                                        <button onClick={() => handleEdit(part)}>Editar</button>
-                                        <button
-                                            className="danger"
-                                            onClick={() => handleDelete(part.id)}
-                                        >
-                                            Excluir
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </section>
             </main>
 
             {/* MODAL EDITAR */}
             {isModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal">
-                        <h2>Editar Peça</h2>
-
-                        <form onSubmit={handleUpdate}>
-                            <input
+                        <Form title="Editar Peças" submitText="Salvar" onSubmit={handleUpdate} handleCancel={() => setIsModalOpen(false)}>
+                            <Input
                                 name="name"
+                                placeholder=""
                                 value={form.name}
                                 onChange={handleChange}
                                 required
@@ -210,31 +179,23 @@ function PartsEdit() {
                                 <option value="Bike">Bike</option>
                             </select>
 
-                            <input
+                            <Input
                                 name="price"
+                                placeholder=""
                                 value={form.price}
                                 onChange={handleChange}
                                 required
                             />
 
-                            <input
+                            <Input
                                 name="stock"
-                                type="number"
+                                placeholder=""
                                 value={form.stock}
                                 onChange={handleChange}
+                                required
                             />
+                        </Form>
 
-                            <div className="modal-actions">
-                                <button type="submit">Salvar</button>
-                                <button
-                                    type="button"
-                                    className="cancel"
-                                    onClick={() => setIsModalOpen(false)}
-                                >
-                                    Cancelar
-                                </button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             )}

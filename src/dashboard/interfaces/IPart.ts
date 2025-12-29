@@ -3,5 +3,5 @@ export interface Part {
   name: string;
   category: "Moto" | "Bike";
   price: string;
-  stock: number;
+  stock?: number;
 }

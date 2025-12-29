@@ -7,7 +7,7 @@ function HomeADM() {
         <div className="home-adm-layout">
             <SidBar />
            <main className="home-adm-content">
-                <h1>Gerenciar Peças</h1>
+                <h1>Painel do ADM</h1>
                 </main>
         </div>
 

@@ -90,12 +90,10 @@ td {
 }
 
 .modal {
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 12px;
+
   padding: 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .modal input,

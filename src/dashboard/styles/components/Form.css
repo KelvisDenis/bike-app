@@ -1,0 +1,66 @@
+.app-form {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.app-form h2 {
+  text-align: center;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.app-form button {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background: #38bdf8;
+  color: #020617;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.app-form button:hover {
+  background: #0ea5e9;
+}
+
+
+
+
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+
+}
+
+.modal-actions .cancel {
+  background: transparent;
+  border: 1px solid #64748b;
+  color: #64748b;
+}
+
+.modal-actions button{
+  cursor: pointer;
+}
+

@@ -9,6 +9,7 @@ import PartsEdit from "../dashboard/pages/PartsEdit";
 import { ProtectedRoute } from "../auth/protected/ProtectedRoute";
 import LoginPage from "../auth/pages/Login";
 import { AuthProvider, useAuth } from "../auth/provider/AuthContext";
+import ServicesADM from "../dashboard/pages/ServicesEdit";
 
 function AppRoutes() {
     const { isAuthenticated } = useAuth();
@@ -48,6 +49,15 @@ function AppRoutes() {
                     element={
                         <ProtectedRoute>
                             <PartsEdit />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/servicos"
+                    element={
+                        <ProtectedRoute>
+                            <ServicesADM />
                         </ProtectedRoute>
                     }
                 />
