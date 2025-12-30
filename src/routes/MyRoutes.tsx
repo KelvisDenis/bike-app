@@ -1,62 +1,95 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { useAuth } from "../auth/provider/AuthContext";
+import { ProtectedRoute } from "../auth/protected/ProtectedRoute";
+
 import Navbar from "../shared/navbar/NavbarComponent";
-import Home from "../home/pages/Home";
 import Footer from "../shared/footer/Footer";
+
+// Public
+import Home from "../home/pages/Home";
 import Parts from "../parts/pages/Parts";
 import Services from "../servicesBike/pages/Services";
 import LoginPage from "../auth/pages/Login";
-import { AuthProvider, useAuth } from "../auth/provider/AuthContext";
 
-function AppRoutes() {
+// Admin
+import HomeADM from "../dashboard/pages/Home";
+import PartsEdit from "../dashboard/pages/PartsEdit";
+import ServicesADM from "../dashboard/pages/ServicesEdit";
+
+export default function AppRoutes() {
     const { isAuthenticated } = useAuth();
 
     return (
         <>
-            {!isAuthenticated && (
+            {/* NAVBAR */}
+            {isAuthenticated ? (
+                <Navbar
+                    items={[
+                        { name: "Home", uri: "/admin" },
+                        { name: "Peças", uri: "/admin/pecas" },
+                        { name: "Serviços", uri: "/admin/servicos" },
+                        { name: "Sair", uri: "/admin/configs" },
+                    ]}
+                />
+            ) : (
                 <Navbar
                     items={[
                         { name: "Home", uri: "/" },
                         { name: "Peças", uri: "/pecas" },
                         { name: "Serviços", uri: "/servicos" },
-                        { name: "Unidades", uri: "/unidades" },
-                        { name: "Fale Conosco", uri: "/reclamaqui" },
+
                     ]}
                 />
             )}
 
-
             <Routes>
+                {/* PUBLIC */}
                 <Route path="/" element={<Home />} />
                 <Route path="/pecas" element={<Parts />} />
                 <Route path="/servicos" element={<Services />} />
                 <Route path="/login" element={<LoginPage />} />
+
+                {/* ADMIN */}
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute>
+                            <HomeADM />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/admin/pecas"
+                    element={
+                        <ProtectedRoute>
+                            <PartsEdit />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/admin/servicos"
+                    element={
+                        <ProtectedRoute>
+                            <ServicesADM />
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
 
-            {!isAuthenticated && (
-                <Footer
-                    operatingHours={[
-                        { label: "Segunda a Sexta", time: "08:00 – 18:00" },
-                        { label: "Sábado", time: "08:00 – 12:00" },
-                        { label: "Domingo", time: "Fechado" },
-                    ]}
-                    contacts={[
-                        { label: "Email", value: "contato@minhaapp.com" },
-                        { label: "Telefone", value: "(99) 99999-9999" },
-                        { label: "WhatsApp", value: "(99) 99999-9999" },
-                    ]}
-                    about="Plataforma para gerenciamento de oficina de moto e bike."
-                />
-            )}
+            {/* FOOTER */}
+            {!isAuthenticated && <Footer
+                operatingHours={[
+                    { label: "Segunda a Sexta", time: "08:00 – 18:00" },
+                    { label: "Sábado", time: "08:00 – 12:00" },
+                    { label: "Domingo", time: "Fechado" },
+                ]}
+                contacts={[
+                    { label: "Email", value: "contato@minhaapp.com" },
+                    { label: "Telefone", value: "(99) 99999-9999" },
+                    { label: "WhatsApp", value: "(99) 99999-9999" },
+                ]}
+                about="Plataforma para gerenciamento de oficina de moto e bike."
+            />}
         </>
-    );
-}
-
-export default function MyRoutes() {
-    return (
-        <AuthProvider>
-            <BrowserRouter>
-                <AppRoutes />
-            </BrowserRouter>
-        </AuthProvider>
     );
 }

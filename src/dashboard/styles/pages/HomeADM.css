@@ -1,23 +1,44 @@
 .home-adm-layout {
-    display: flex;
-    min-height: 100vh;
-    background-color: #020617;
-    flex-direction: row; /* desktop */
+  min-height: 100vh;
+  background: #f3f4f6;
 }
 
 .home-adm-content {
-    flex: 1;
-    padding: 2rem;
-    color: #e5e7eb;
+  padding: 2rem;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .home-adm-layout {
-        flex-direction: column;
-    }
+/* Header */
+.home-adm-header {
+  margin-bottom: 2rem;
+}
 
-    .home-adm-content {
-        padding: 1rem;
-    }
+.home-adm-header h2 {
+  font-size: 1.8rem;
+  color: #111827;
+}
+
+.home-adm-header p {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Grid de cards */
+.home-adm-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .home-adm-content {
+    padding: 1rem;
+  }
 }

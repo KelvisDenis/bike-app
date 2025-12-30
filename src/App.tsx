@@ -1,16 +1,18 @@
-import { useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
-import MyRoutes from './routes/MyRoutes'
-import AdminRoutes from './routes/AdminRoutes'
+import { AuthProvider } from './auth/provider/AuthContext'
+import AppRoutes from './routes/MyRoutes'
 
 function App() {
 
   return (
-    <>
-     <MyRoutes/>
-     <AdminRoutes/>
-
-    </>
+  <>
+    <BrowserRouter>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </BrowserRouter>
+  </>
   )
 }
 
