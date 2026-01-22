@@ -1,4 +1,5 @@
 import "../styles/Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -10,12 +11,12 @@ function Home() {
         </p>
 
         <div className="hero-actions">
-          <a href="/pecas" className="btn primary">
+          <Link to="/pecas" className="btn primary">
             Ver Peças
-          </a>
-          <a href="/servicos" className="btn secondary">
+          </Link>
+          <Link to="/servicos" className="btn secondary">
             Ver serviços
-          </a>
+          </Link>
         </div>
       </section>
 
