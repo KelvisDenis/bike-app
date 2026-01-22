@@ -27,4 +27,11 @@ export const partsMock = [
     description: "Alta resistência para trilhas e cidade.",
     price: "R$ 29,90",
   },
+    {
+    id: 5,
+    name: "Pneu sem câmara de ar",
+    category: "Bike",
+    description: "Alta resistência para trilhas e cidade.",
+    price: "R$ 29,90",
+  },
 ];

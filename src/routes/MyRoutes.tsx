@@ -15,9 +15,11 @@ import LoginPage from "../auth/pages/Login";
 import HomeADM from "../dashboard/pages/Home";
 import PartsEdit from "../dashboard/pages/PartsEdit";
 import ServicesADM from "../dashboard/pages/ServicesEdit";
+import Logout from "../auth/pages/Logout";
 
 export default function AppRoutes() {
     const { isAuthenticated } = useAuth();
+    const { logout } = useAuth();
 
     return (
         <>
@@ -28,7 +30,7 @@ export default function AppRoutes() {
                         { name: "Home", uri: "/admin" },
                         { name: "Peças", uri: "/admin/pecas" },
                         { name: "Serviços", uri: "/admin/servicos" },
-                        { name: "Sair", uri: "/admin/configs" },
+                        { name: "Sair", uri: "/admin/sair" },
                     ]}
                 />
             ) : (
@@ -71,6 +73,15 @@ export default function AppRoutes() {
                     element={
                         <ProtectedRoute>
                             <ServicesADM />
+                        </ProtectedRoute>
+                    }
+                />
+
+                 <Route
+                    path="/admin/sair"
+                    element={
+                        <ProtectedRoute>
+                            <Logout/>
                         </ProtectedRoute>
                     }
                 />
