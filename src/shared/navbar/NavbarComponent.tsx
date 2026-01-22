@@ -13,7 +13,7 @@ function Navbar({ items }: INavProps) {
     return (
         <header className="navbar">
             <div className="navbar-container">
-                <div className="navbar-logo">Hernanes</div>
+                <div className="navbar-logo">MotoBikes</div>
 
                 <button
                     className="hamburger"
